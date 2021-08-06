@@ -105,4 +105,10 @@ class Atendimento {
 
 }
 
+/*class Pet {
+
+    
+
+} */
+
 module.exports = new Atendimento
