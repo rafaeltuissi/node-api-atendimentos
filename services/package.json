@@ -1,0 +1,14 @@
+{
+  "name": "services",
+  "version": "1.0.0",
+  "description": "",
+  "main": "clientes.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Rafael Tuissi",
+  "license": "ISC",
+  "dependencies": {
+    "faker": "^4.1.0"
+  }
+}

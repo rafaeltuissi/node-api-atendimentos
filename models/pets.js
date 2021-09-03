@@ -1,4 +1,5 @@
 const conexao = require('../infraestructure/connection')
+const archiveUploader = require('../archiveUploader/archiveUploader')
 
 class Pet {
     
@@ -6,13 +7,26 @@ class Pet {
 
         const query = `INSERT INTO Pets SET ?`
 
-        conexao.query(query, pet, erro => {
-            if(erro){
-                console.log(erro)
-                res.status(400).json(erro)
+        archiveUploader(pet.image, pet.name, (error, newPath) => {
+
+            if(error){
+                res.status(400).json({ error })
             } else {
-                res.status(200).json(pet)
+                const newPet = {name: pet.name, image: newPath}
+
+                conexao.query(query, newPet, erro => {
+                    if(erro){
+                        console.log(erro)
+                        res.status(400).json(erro)
+                    } else {
+                        res.status(200).json(newPet)
+                    }
+                })  
             }
         })
+           
+
     }
 }
+
+module.exports = new Pet
